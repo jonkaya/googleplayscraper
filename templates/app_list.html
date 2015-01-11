@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Google Play Top Free Items Table
+{% endblock page_title %}
+
+{% block content %}
+
+
+    <table id="table-style" data-height="400" data-row-style="rowStyle">
+        <thead>
+        <tr align="center">
+            <th data-field="id" class="col-md-2" data-sortable="true">ID
+                <a href="/googleplaytopfreeappslist/?sort=-id"><i class="glyphicon glyphicon-arrow-down"></i> </a>
+                <a href="/googleplaytopfreeappslist/?sort=id"><i class="glyphicon glyphicon-arrow-up"></i> </a>
+            </th>
+            <th data-field="name" class="col-md-2">
+                Title
+            </th>
+            <th data-field="price" class="col-md-2" data-sortable="true">
+                <i class="glyphicon glyphicon-star"></i>
+                Stars
+                <a href="/googleplaytopfreeappslist/?sort=-star_count"><i class="glyphicon glyphicon-arrow-down"></i> </a>
+                <a href="/googleplaytopfreeappslist/?sort=star_count"><i class="glyphicon glyphicon-arrow-up"></i> </a>
+            </th>
+            <th data-field="price" class="col-md-2" data-sortable="true">
+                Reviews
+                <a href="/googleplaytopfreeappslist/?sort=-review_count"><i class="glyphicon glyphicon-arrow-down"></i> </a>
+                <a href="/googleplaytopfreeappslist/?sort=review_count"><i class="glyphicon glyphicon-arrow-up"></i> </a>
+            </th>
+            <th data-field="price" class="col-md-4" data-sortable="true">
+                Release Date
+                <a href="/googleplaytopfreeappslist/?sort=-release_date"><i class="glyphicon glyphicon-arrow-down"></i> </a>
+                <a href="/googleplaytopfreeappslist/?sort=release_date"><i class="glyphicon glyphicon-arrow-up"></i> </a>
+            </th>
+        </tr>
+        </thead>
+
+        {% for record in apps %}
+            <tr align="left">
+                <td>{{ record.id }}</td>
+                <td>{{ record.title }}</td>
+                <td>{{ record.star_count }}</td>
+                <td>{{ record.review_count }}</td>
+                <td>{{ record.release_date }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+
+
+
+
+
+{% endblock content %}

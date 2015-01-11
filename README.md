@@ -1,19 +1,19 @@
-========================
-Sample Scraper for Google Play Top Free Apps
-========================
+###========================
+###Sample Scraper for Google Play Top Free Apps
+###========================
 
 A project for scraping top 500 free apps on Google Play and store on a local Sqlite database.
 
 To use this project follow these steps:
 
-#. Create your working environment
-#. Clone project
-#. Install additional dependencies
-#. Running Project
-#. Run Scraper
+. Create your working environment
+. Clone project
+. Install additional dependencies
+. Running Project
+. Run Scraper
 
-Working Environment
-===================
+###Working Environment
+###===================
 
 ```bash
     $ mkvirtualenv scraper
@@ -21,15 +21,15 @@ Working Environment
 ```
 
 
-Cloning project
-=====================
+###Cloning project
+###=====================
 
 ```bash
     $ git clone https://github.com/asimcan/googleplayscraper
 ```
 
-Installation of Dependencies
-=============================
+###Installation of Dependencies
+###=============================
 
 In development::
 
@@ -37,8 +37,8 @@ In development::
     $ pip install -r requirements/local.txt
 ```
 
-Running Project
-=============================
+###Running Project
+###=============================
 
 ```bash
     (scraper)$ python manage.py syncdb
@@ -46,8 +46,8 @@ Running Project
 ```
 
 
-Running Scraper
-=============================
+###Running Scraper
+###=============================
 
 in local browser proceed to
 ```bash

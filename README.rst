@@ -15,7 +15,7 @@ To use this project follow these steps:
 Working Environment
 ===================
 
-```
+```bash
     $ mkvirtualenv scraper
     $ workon scraper
 ```
@@ -24,7 +24,7 @@ Working Environment
 Cloning project
 =====================
 
-```
+```bash
     $ git clone https://github.com/asimcan/googleplayscraper
 ```
 
@@ -33,14 +33,14 @@ Installation of Dependencies
 
 In development::
 
-```
+```bash
     $ pip install -r requirements/local.txt
 ```
 
 Running Project
 =============================
 
-```
+```bash
     (scraper)$ python manage.py syncdb
     (scraper)$ python manage.py runserver --settings=APP.settings.local
 ```
@@ -50,13 +50,13 @@ Running Scraper
 =============================
 
 in local browser proceed to
-```
+```bash
     http://localhost:8000/startgoogleplayscraper/
 ```
 
 This webpage will trigger scraper thread and crawl found web pages.
 
-```
+```bash
     http://localhost:8000/googleplaytopfreeappslist/
 ```
 

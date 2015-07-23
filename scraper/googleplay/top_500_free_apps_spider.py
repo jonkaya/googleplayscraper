@@ -1,4 +1,5 @@
 from datetime import datetime
+from mongo import get_connection
 
 __author__ = 'can'
 
@@ -6,7 +7,8 @@ import time
 import re
 from scrapy import Spider, Field, Item, Request
 
-from .models import GooglePlayTopFreeApps
+
+db = get_connection()
 
 class FreeAppItem(Item):
     title = Field()
@@ -14,7 +16,6 @@ class FreeAppItem(Item):
     stars = Field()
     review_count = Field()
     release_date = Field()
-
 
 
 
@@ -34,7 +35,6 @@ class Top500FreeAppsSpider(Spider):
 
         free_app_list = [FreeAppItem(title=e.xpath("text()").extract(), link=e.xpath("@href").extract()) for e in response.css("h2 a")]
 
-
         for free_app in free_app_list:
             request = Request(self.base_url + free_app['link'][0], self.parse_detail)
             request.meta['item'] = free_app
@@ -53,26 +53,27 @@ class Top500FreeAppsSpider(Spider):
 
         id, title = re.split(r'\.\s+', item['title'][0])
 
-
-
-        record, created = GooglePlayTopFreeApps.objects.get_or_create(id=int(id))
-
-        record.title = title
-        # remove any ,
-        record.review_count = long(item['review_count'][0].replace(',', ''))
-
-        record.star_count = float(item['stars'][0])
         # in format "- January 8, 2015"
         time_struct = time.strptime(item['release_date'][2], "- %B %d, %Y")
 
-        record.release_date = datetime(year=time_struct.tm_year,
+        release_date = datetime(year=time_struct.tm_year,
                                        month=time_struct.tm_mon,
                                        day=time_struct.tm_mday)
 
-
-
-        record.save()
-
+        db.freeapps.update(
+            { 'id': int(id) },
+            {
+                "$set": {
+                    'id': int(id),
+                    'title': title,
+                    'review_count': int(item['review_count'][0].replace(',', '')),
+                    'star_count': float(item['stars'][0]),
+                    'release_date': release_date,
+                    'last_update': datetime.now()
+                }
+            },
+            upsert=True
+        )
 
         return item
 

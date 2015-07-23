@@ -2,15 +2,14 @@
 ###Sample Scraper for Google Play Top Free Apps
 ####========================
 
-A project for scraping top 500 free apps on Google Play and store on a local Sqlite database.
+A project for scraping top 500 free apps on Google Play using scrapy and store on MongoDB.
 
 To use this project follow these steps:
 
 . Create your working environment
 . Clone project
-. Install additional dependencies
+. Installation of Dependencies
 . Running Project
-. Run Scraper
 
 ####Working Environment
 
@@ -27,31 +26,22 @@ To use this project follow these steps:
 ```
 
 ####Installation of Dependencies
-In development::
+In development:
 
 ```bash
-    $ pip install -r requirements/local.txt
+    $ pip install -r requirements/dev.txt
+```
+
+In production:
+
+```bash
+    $ pip install -r requirements/prod.txt
 ```
 
 ####Running Project
 
 ```bash
-    (scraper)$ python manage.py syncdb
-    (scraper)$ python manage.py runserver --settings=APP.settings.local
+    (scraper)$ python main.py --init
 ```
 
-
-####Running Scraper
-
-in local browser proceed to
-```bash
-    http://localhost:8000/startgoogleplayscraper/
-```
-
-This webpage will trigger scraper thread and crawl found web pages.
-
-```bash
-    http://localhost:8000/googleplaytopfreeappslist/
-```
-
-contains a table for listing crawled content
+This will create scheduled jobs using Advanced Python Scheduler and crawl the website once every hour.

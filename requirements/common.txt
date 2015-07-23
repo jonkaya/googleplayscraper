@@ -1,0 +1,5 @@
+-e git+git://github.com/mongodb/mongo-python-driver.git#egg=pymongo
+requests==2.7.0
+Scrapy
+pytz==2015.4
+apscheduler==3.0.3
